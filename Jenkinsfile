@@ -34,6 +34,15 @@ podTemplate(label: 'docker-build',
                 }
             }
         }
+        stage('Test'){
+            container('docker'){
+                script {
+                    appImage.inside {
+                        sh 'ls '
+                    }
+                }
+            }
+        }      
         stage('Push'){
             container('docker'){
                 script {
