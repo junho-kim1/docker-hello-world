@@ -30,7 +30,7 @@ podTemplate(label: 'docker-build',
         stage('Build'){
             container('docker'){
                 script {
-                    appImage = docker.build("miniivy/node-hello-world")
+                    appImage = docker.build("junho-kim1/node-hello-world")
                 }
             }
         }
