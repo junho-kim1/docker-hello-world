@@ -18,7 +18,7 @@ podTemplate(label: 'docker-build',
   ]
 ) {
     node('docker-build') {
-        def dockerHubCred = "docker-hub"
+        def dockerHubCred = "dev-reg"
         def appImage
         
         stage('Checkout'){
@@ -46,7 +46,7 @@ podTemplate(label: 'docker-build',
         stage('Push'){
             container('docker'){
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', dockerHubCred){
+                    docker.withRegistry('http://dev-reg.kollus.com:3003', dockerHubCred){
                         appImage.push("${env.BUILD_NUMBER}")
                         appImage.push("latest")
                     }
