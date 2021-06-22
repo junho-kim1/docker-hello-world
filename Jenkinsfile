@@ -46,7 +46,7 @@ podTemplate(label: 'docker-build',
         stage('Push'){
             container('docker'){
                 script {
-                    docker.withRegistry('http://dev-reg.kollus.com:3003/base', dockerHubCred){
+                    docker.withRegistry('https://dev-reg.kollus.com:3003/base', dockerHubCred){
                         appImage.push("${env.BUILD_NUMBER}")
                         appImage.push("latest")
                     }
