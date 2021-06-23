@@ -19,6 +19,7 @@ podTemplate(label: 'docker-build',
 ) {
     node('docker-build') {
         def dockerHubCred = "kollus-reg"
+        def dockerHubCred1 = "dev-reg"
         def appImage
         
         stage('Checkout'){
