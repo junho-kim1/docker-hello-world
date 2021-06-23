@@ -18,7 +18,7 @@ podTemplate(label: 'docker-build',
   ]
 ) {
     node('docker-build') {
-        def dockerHubCred = "dev-reg"
+        def dockerHubCred = "kollus-reg"
         def appImage
         
         stage('Checkout'){
@@ -30,7 +30,7 @@ podTemplate(label: 'docker-build',
         stage('Build'){
             container('docker'){
                 script {
-                    appImage = docker.build("base/node-hello-world")
+                    appImage = docker.build("utils/node-hello-world")
                 }
             }
         }
@@ -46,7 +46,7 @@ podTemplate(label: 'docker-build',
         stage('Push'){
             container('docker'){
                 script {
-                    docker.withRegistry('http://dev-reg.kollus.com:30003', dockerHubCred){
+                    docker.withRegistry('https://docker-kr.kollus.com', dockerHubCred){
                         appImage.push("${env.BUILD_NUMBER}")
                         appImage.push("latest")
                     }
