@@ -30,7 +30,7 @@ podTemplate(label: 'docker-build',
         stage('Build'){
             container('docker'){
                 script {
-                    appImage = docker.build("kollus/node-hello-world")
+                    appImage = docker.build("utils/node-hello-world")
                 }
             }
         }
